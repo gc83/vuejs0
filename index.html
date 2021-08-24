@@ -22,10 +22,15 @@
           <button @click="ajouterNote">Ajouter</button>
         </form>
 
-        <ul class="mt-5">
+        <!-- <ul class="mt-5">
           <li class="col-3 mx-auto" v-for="todo in todos" @click="inverser">
             {{todo}}
           </li>
+        </ul> -->
+        <ul class="mt-5">
+          <note v-for="todo in todos" v-bind:content="todo" @click="inverser"
+            >{{todo}}</note
+          >
         </ul>
       </div>
     </div>
@@ -47,7 +52,14 @@
             this.todos.push(this.message);
           },
         },
-      }).mount("#app");
+      });
+
+      vm.component("note", {
+        props: ["content"],
+        template: `<li class="col-3 mx-auto"> {{content}} </li>`,
+      });
+
+      vm.mount("#app");
     </script>
   </body>
 </html>
