@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>test vuejs</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>to do list</h1>
+      <input type="text" v-model="message" />
+      <button @click="ajouterNote">Ajouter</button>
+      <p v-for="todo in todos" @click="inverser">{{todo}}</p>
+    </div>
+
+    <script>
+      const vm = Vue.createApp({
+        data() {
+          return {
+            message: "to do",
+            todos: ["sauver le monde", "aller manger", "faire du dev"],
+          };
+        },
+        methods: {
+          inverser() {
+            this.todos.reverse();
+          },
+          ajouterNote() {
+            this.todos.push(this.message);
+          },
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>
